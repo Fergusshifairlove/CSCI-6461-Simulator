@@ -35,8 +35,8 @@ public class UiFrameTesting extends Application {
 			cc.setPercentWidth(100 / 20.);
 			grid.getColumnConstraints().add(cc);
 		}
-		//grid.setHgrow(0);
-		grid.setVgap(0);
+		//grid.setVgrow();
+		grid.setVgap(20);
 		grid.setPadding(new Insets(0, 0, 0, 0));
 
 
@@ -58,7 +58,7 @@ public class UiFrameTesting extends Application {
 		
 		setSwitch.connectPort("output", connection);
 		setBulb.connectPort("input", connection);
-        grid.setGridLinesVisible(true);
+       // grid.setGridLinesVisible(true);
 		
 		for (int i = 0; i < 20; ++i) {
 			grid.add(bulbs[i] = new RadioButton(), i, 0);
@@ -93,8 +93,8 @@ public class UiFrameTesting extends Application {
 				updateUi();
 			}
 		});
-		grid.add(btn, 0, 2, 1, 1);
-		grid.add(switchbuttons.imageView,0,3,1,1);
+		grid.add(btn, 0, 2, 3, 1);
+		grid.add(switchbuttons.imageView,0,3,3,1);
 		updateUi();
 
 		primaryStage.show();
