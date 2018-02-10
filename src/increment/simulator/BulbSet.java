@@ -1,8 +1,4 @@
-package increment.simulator.front_panel;
-
-import increment.simulator.Cable;
-import increment.simulator.CablePartialAdapter;
-import increment.simulator.Chip;
+package increment.simulator;
 
 /**
  * A group of bulbs, which can be on and off. It's going to take a group of input that is either true or false,
@@ -41,7 +37,21 @@ public class BulbSet extends Chip {
 			return bulbs[i].isOn();
 		return false;
 	}
-	
+
+	/**
+	 * Wrap value for convenient pass.
+	 * @return
+	 */
+	public long getValue() {
+		long result = 0;
+		for (int i = bulbs.length; i > 0; --i)
+		{
+			result <<= 1;
+			if (getBit(i - 1))
+				result += 1;
+		}
+		return result;
+	}
 	@Override
 	public boolean evaluate() {
 		for (IndicatorBulb b : bulbs)
