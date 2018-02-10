@@ -25,3 +25,4 @@ hs_err_pid*
 # file: ~/.gitignore_global
 
 .idea
+.idea/workspace.xml

@@ -1,0 +1,20 @@
+ -fx-background-color: transparent;
+
+ -fx-background-insets: 0;
+  -fx-background-radius: 0;
+
+     -fx-background-position: center;
+      -fx-background-repeat: stretch;
+      -fx-shape: none;
+  -fx-background-color: transparent;
+
+   -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-shape: none;
+
+  -fx-background-color: transparent;
+       -fx-background-position: center;
+        -fx-background-repeat: stretch;
+
+ -fx-background-image: url("file:res/close2.png");
+  -fx-background-image: url("file:res/open.png");
