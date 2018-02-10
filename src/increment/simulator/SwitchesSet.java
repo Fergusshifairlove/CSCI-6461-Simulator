@@ -1,12 +1,8 @@
-package increment.simulator.front_panel;
-
-import increment.simulator.Cable;
-import increment.simulator.CablePartialAdapter;
-import increment.simulator.Chip;
+package increment.simulator;
 
 /**
  * A set of switches, which all can separately be on and off. It's going to output either true or false, depending 
- * on whether it is turned to on or off.
+ * on whether it is turned to on or off.<br>
  * 
  * A switch has one output: <br>
  * 		* output[width] indicating whether it's on or off.
@@ -14,7 +10,13 @@ import increment.simulator.Chip;
  *
  */
 public class SwitchesSet extends Chip {
+	/**
+	 * Switches storage.
+	 */
 	protected Switch[] switches;
+	/**
+	 * Output adapter. Provides a better way organizing the switches.
+	 */
 	protected CablePartialAdapter outputAdapter;
 	/**
 	 * Generates width switches, then connect each of them to the output.
@@ -29,7 +31,9 @@ public class SwitchesSet extends Chip {
 			switches[i].connectPort("output", new CablePartialAdapter(1, outputAdapter, i));
 		}
 	}
-	
+	/**
+	 * When connect port we reMother the adapter so the output goes to the right place. 
+	 */
 	@Override
 	public void connectPort(String name, Cable cable) {
 		super.connectPort(name, cable);
@@ -37,13 +41,16 @@ public class SwitchesSet extends Chip {
 	}
 	/**
 	 * Flips one bit.
-	 * @param i
-	 * @param b
+	 * @param i - switch index
+	 * @param b - bit.
 	 */
 	public void flipBit(int i, boolean b) {
 		if (i >= 0  && i < switches.length)
 			switches[i].flip(b);
 	}
+	/**
+	 * Move switches values to output. 
+	 */
 	@Override
 	public boolean evaluate() {
 		boolean changed = false;
