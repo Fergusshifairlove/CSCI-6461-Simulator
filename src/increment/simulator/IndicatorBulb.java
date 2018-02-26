@@ -1,6 +1,5 @@
-package increment.simulator.front_panel;
+package increment.simulator;
 
-import increment.simulator.Chip;
 /**
  * A simulated bulb, which can be on and off, indicating its input. It's going to take a bit input that is
  * either true or false, indicating whether it is to be turned to on or off.
@@ -22,7 +21,9 @@ public class IndicatorBulb extends Chip {
 	public boolean isOn() {
 		return status;
 	}
-	
+	/**
+	 * Only sets bulb status. Always returns false.
+	 */
 	@Override
 	public boolean evaluate() {
 		status = getPort("input").getBit(0);
