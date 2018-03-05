@@ -128,7 +128,7 @@ public class ControlUnit extends Chip {
 	 * @throws IllegalStateException When file format error.
 	 */
 	private void loadFile() throws IOException {
-		ConvenientStreamTokenizer tokens = new ConvenientStreamTokenizer(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/controlDef.ini"))));
+		ConvenientStreamTokenizer tokens = new ConvenientStreamTokenizer(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/res/conf/controlDef.ini"))));
 
 		if (!parsePorts(tokens))
 			panic("Cannot parse ports.\nLine: " + tokens.lineno());
@@ -431,7 +431,7 @@ public class ControlUnit extends Chip {
 		if (getPort("pause").getBit(0))
 			return "PAUSED";
 		StringBuilder sb = new StringBuilder();
-		sb.append("Current Status:\n\t");
+		sb.append("Current Status:\n");
 		sb.append(currentState);
 		return sb.toString();
 	}

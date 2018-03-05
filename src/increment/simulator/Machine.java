@@ -2,6 +2,7 @@ package increment.simulator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,9 +58,9 @@ public class Machine {
 		// SIMULATED Boot Loader: 
 		// It loads a testing program into the memory address 0x10, and sets PC to
 		// 0x10.
-		((ClockRegister)getChip("PC")).setValue(100);
-		CompiledProgram code = AssemblyCompiler.compile(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/TestProgram1.prg"))));
-		mem.loadProgram(1, code);
+		((ClockRegister)getChip("PC")).setValue(1025);
+		CompiledProgram code = AssemblyCompiler.compile(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/res/conf/IPL Program.prg"))));
+		mem.loadProgram(1025, code);
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public class Machine {
 	 * @throws IOException When load file failed.
 	 */
 	private void loadFile() throws IOException {
-		ConvenientStreamTokenizer tokens = new ConvenientStreamTokenizer(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/chipsDef.ini"))));
+		ConvenientStreamTokenizer tokens = new ConvenientStreamTokenizer(new BufferedReader(new InputStreamReader(Machine.class.getResourceAsStream("/res/conf/chipsDef.ini"))));
 		parseChipsDefinition(tokens);
 		parseCablesDefinition(tokens);
 	}
@@ -263,5 +264,8 @@ public class Machine {
 	}
 	public void keyPress(short key) {
 		keyboard.pressKey(key);
+	}
+	public void insertCard(InputStream card) {
+		reader.insertCard(card);
 	}
 }

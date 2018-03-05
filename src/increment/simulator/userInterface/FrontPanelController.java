@@ -1,6 +1,7 @@
 package increment.simulator.userInterface;
 
-import increment.simulator.ui.MachineWrapper;
+import java.io.File;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,6 +29,7 @@ public class FrontPanelController   {
 	@FXML private GridPane FrontPanel;
     @FXML private Slider Slider_Auto_set;
     @FXML private GridPane KeyboardPanel;
+    
 
 
           private Duration duration;
@@ -88,6 +91,14 @@ public class FrontPanelController   {
 
     public void handleLoadMARButtonAction(ActionEvent actionEvent) {
         machine.forceLoadMAR();
+    }
+
+    public void handleInsertCardButtonAction(ActionEvent actionEvent) {
+    	FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(FrontPanel.getScene().getWindow());
+        if (file != null) {
+            machine.insertCard(file);
+        }
     }
 
     public void handleAutoTickButtonAction(ActionEvent actionEvent) {
